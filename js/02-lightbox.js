@@ -17,8 +17,18 @@ const gallery = document.querySelector(".gallery");
 })();
 console.log(galleryItems);
 
-const lightBox = new SimpleLightbox(".gallery a", {
-  preview,
-  original,
-  description,
-});
+gallery.addEventListener("click", onImgGalleryClick);
+function onImgGalleryClick(evt) {
+  evt.preventDefault();
+  const imgGalleryItem = evt.target.classList.contains("gallery__image");
+  if (!imgGalleryItem) {
+    return;
+  }
+  const lightBox = new SimpleLightbox(".gallery a", {
+    /* options */
+    captionSelector: "img",
+    captionType: "attr",
+    captionsData: "alt",
+    captionDelay: 250,
+  });
+}
